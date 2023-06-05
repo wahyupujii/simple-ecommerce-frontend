@@ -51,7 +51,7 @@ export default function CardProduct({ data }) {
 					height: '60%',
 					borderRadius: '10px',
 				}}
-				src={`http://localhost:3000/${data.image}`}
+				src={data.image.split(":")[0] === "https" ? data.image : `http://localhost:3000/${data.image}`}
 			/>
 			<CardInfo>
 				<p style={{ fontWeight: 'bold' }}>{data.name} </p>

@@ -13,7 +13,7 @@ export default function Login() {
 		if (inputs.email === "admin@gmail.com" && inputs.password === "admin") {
 			sessionStorage.clear();
 			sessionStorage.setItem("admin", true)
-			navigate("/adminpage");
+			window.location.pathname = '/adminpage';
 			return
 		}
 

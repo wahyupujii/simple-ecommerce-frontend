@@ -21,16 +21,7 @@ const Navbar = () => {
                 </a>
 
                 {
-                    userLogin === null ? (
-                        <ul className='nav-menu'>
-                            <li className='nav-item'>
-                                <a className='nav-links' href="/login">Login</a>
-                            </li>
-                            <li className='nav-item'>
-                                <a className='nav-links highlight' href="/register">Register</a>
-                            </li>
-                        </ul>
-                    ) : adminLoggedIn ? (
+                    adminLoggedIn === "true" ? (
                         <ul className='nav-menu'>
                             <li className='nav-item'>
                                 <a className='nav-links' href="/adminpage">
@@ -67,7 +58,16 @@ const Navbar = () => {
                                 </a>
                             </li>
                         </ul>
-                    ) : (<div></div>)
+                    ) : (
+                        <ul className='nav-menu'>
+                            <li className='nav-item'>
+                                <a className='nav-links' href="/login">Login</a>
+                            </li>
+                            <li className='nav-item'>
+                                <a className='nav-links highlight' href="/register">Register</a>
+                            </li>
+                        </ul>
+                    )
                 }
             </nav>
         </>

@@ -112,7 +112,7 @@ export default function UnpaidOrders() {
                                     productUnpaid.map((product, index) => {
                                         return (
                                             <div key={index} style={styles.cardProduct}>
-                                                <img style={{ width: '100px', height: '100px' }} src={`http://localhost:3000/${product.image}`} alt="product image" />
+                                                <img style={{ width: '100px', height: '100px' }} src={product.image.split(":")[0] === "https" ? product.image : `http://localhost:3000/${product.image}`} alt="product image" />
                                                 <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', height: '50px', justifyContent: 'space-evenly' }}>
                                                     <h4> {product.name}</h4>
                                                     <h4 style={{ color: 'salmon' }}> {convertToRupiah(product.price)} </h4>

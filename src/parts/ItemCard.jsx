@@ -50,7 +50,7 @@ export default function ItemCard({ item, handleDelete, handleCount }) {
                     <CardProduct key={itemProduct.id}>
                         <div style={{ display: 'flex' }}>
                             <img
-                                src={`http://localhost:3000/${itemProduct.image}`}
+                                src={itemProduct.image.split(":")[0] === "https" ? itemProduct.image : `http://localhost:3000/${itemProduct.image}`}
                                 style={{ width: '100px', height: '100%', marginRight: '10px' }}
                             />
                             <DeskripsiProduct>

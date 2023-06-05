@@ -18,6 +18,8 @@ const App = () => {
 					<Route path='/orders' element={<Orders />} />
 					<Route path='/orders/paid' element={<PaidOrders />} />
 					<Route path='/orders/unpaid' element={<UnpaidOrders />} />
+
+					<Route path='/adminpage' element={<h1>Adminpage</h1>} />
 				</Routes>
 			</BrowserRouter>
 		</>

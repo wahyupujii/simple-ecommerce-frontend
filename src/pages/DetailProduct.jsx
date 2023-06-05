@@ -51,7 +51,7 @@ export default function DetailProduct() {
 				product_id: product.id,
 				price: product.price
 			})
-			.then(() => {})
+			.then(() => alert("Berhasil ditambahkan ke keranjang"))
 			.catch(() => alert("Produk sudah ada di keranjang"))
 	}
 
@@ -80,7 +80,7 @@ export default function DetailProduct() {
 							<div style={styles.card}>
 								<div style={styles.thumbnail}>
 									{/* gambar thumbnail */}
-									<img style={styles.imgThumbnail} src={`http://localhost:3000/${product.image}`} />
+									<img style={styles.imgThumbnail} src={product.image.split(":")[0] === "https" ? product.image : `http://localhost:3000/${product.image}`} />
 
 								</div>
 								<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '60%' }}>

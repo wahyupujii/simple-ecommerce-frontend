@@ -17,22 +17,22 @@ const Button = styled.button`
     }
 `;
 
-export default function PaidOrders() {
+export default function VerificationOrder() {
     let navigate = useNavigate()
-    const [orderPaid, setOrdersPaid] = useState({});
-    const [productPaid, setProductPaid] = useState([])
+    const [orderVerif, setOrdersVerif] = useState({});
+    const [productVerif, setProductVerif] = useState([])
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         orders
-            .paid()
+            .verification()
             .then(res => {
-                setOrdersPaid(res.data.order)
-                setProductPaid(res.data.product)
+                setOrdersVerif(res.data.order)
+                setProductVerif(res.data.product)
                 setLoading(false)
             })
             .catch(() => {
-                setOrdersPaid(null);
+                setOrdersVerif(null);
                 setLoading(false);
             })
     }, [])
@@ -46,7 +46,7 @@ export default function PaidOrders() {
 
     return (
         <div>
-            <h1>Paid Orders</h1>
+            <h1>Verification Orders</h1>
             <Button primary style={{ margin: '20px 0' }} onClick={() => navigate('/orders')}>Kembali</Button>
             {
                 loading ? (
@@ -54,27 +54,27 @@ export default function PaidOrders() {
                 ) :
                     (
                         orderPaid === null ? (
-                            <div>Belum ada pesanan yang sudah dibayar</div>
+                            <div>Belum ada pesanan yang sudah diverifikasi admin</div>
                         ) : (
                             <div style={styles.containerCard}>
                                 <div style={styles.title}>
-                                    <h4>Transaksi : <span style={{ color: 'palevioletred' }}>{orderPaid.id}</span></h4>
+                                    <h4>Transaksi : <span style={{ color: 'palevioletred' }}>{orderVerif.id}</span></h4>
                                     <h5 style={{ color: 'palevioletred' }}>
                                         {
-                                            orderPaid.verification === "Paid" ? (
-                                                <span>Pesanan sudah dibayar dan belum diverifikasi</span>
+                                            orderVerif.verification === "Verification" ? (
+                                                <span>Pesanan sudah diverifikasi admin</span>
                                             ) : (
-                                                <span>Pesanan sudah diverifikasi</span>
+                                                <span>Pesanan belum diverifikasi</span>
                                             )
                                         }
                                     </h5>
                                 </div>
 
                                 {
-                                    productPaid.map((product, index) => {
+                                    productVerif.map((product, index) => {
                                         return (
                                             <div key={index} style={styles.cardProduct}>
-                                                <img style={{ width: '100px', height: '100px' }} src={product.image.split(":")[0] === "https" ? product.image : `http://localhost:3000/${product.image}`} alt="product image" />
+                                                <img style={{ width: '100px', height: '100px' }} src={`http://localhost:3000/${product.image}`} alt="product image" />
                                                 <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', height: '50px', justifyContent: 'space-evenly' }}>
                                                     <h4> {product.name}</h4>
                                                     <h4 style={{ color: 'salmon' }}> {convertToRupiah(product.price)} </h4>
@@ -87,7 +87,7 @@ export default function PaidOrders() {
                                 }
                                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
                                     <h4 style={{ color: 'palevioletred' }}>Sudah dibayar</h4>
-                                    <h4>Total : <span style={{ color: 'palevioletred' }}>{convertToRupiah(orderPaid.ammount)}</span></h4>
+                                    <h4>Total : <span style={{ color: 'palevioletred' }}>{convertToRupiah(orderVerif.ammount)}</span></h4>
                                 </div>
                             </div>
                         )
