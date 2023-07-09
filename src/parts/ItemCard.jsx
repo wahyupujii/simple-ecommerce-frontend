@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, memo } from 'react'
 import styled from 'styled-components'
 
 const CardProduct = styled.div`
@@ -30,7 +30,7 @@ const OpsiButton = styled.button`
     cursor: pointer;
 `
 
-export default function ItemCard({ item, handleDelete, handleCount }) {
+function ItemCard({ item, handleDelete, handleCount }) {
     const [itemProduct, setItemProduct] = useState({ ...item });
 
     useEffect(() => {
@@ -99,6 +99,8 @@ export default function ItemCard({ item, handleDelete, handleCount }) {
         </>
     )
 }
+
+export default memo(ItemCard)
 
 const styles = {
     action: {

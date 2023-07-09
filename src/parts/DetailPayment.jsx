@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {memo} from 'react'
 import styled from 'styled-components';
 import { orders } from '../constants';
 import { useNavigate } from 'react-router-dom';
@@ -32,7 +32,7 @@ const Button = styled.button`
     }
 `;
 
-export default function DetailPayment({ totalPrice }) {
+function DetailPayment({ totalPrice }) {
     let navigate = useNavigate();
 
     const convertToRupiah = (angka) => {
@@ -81,6 +81,8 @@ export default function DetailPayment({ totalPrice }) {
         </div>
     )
 }
+
+export default memo(DetailPayment)
 
 const styles = {
     textareaAddress: {
